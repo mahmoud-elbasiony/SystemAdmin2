@@ -1,0 +1,38 @@
+Lab objectives:	
+*Using Loop devices, create 4  PVs	
+*create VG and add 3 on PVs to it	
+*create LV which has size of 250M
+*format LV using ext4
+*mount LV into /mnt directory
+*extend VG with the remaining PV
+*extend LV with +50M
+*resize2fs LV with the 50M extra
+Network:
+*Display the network interface information using ip command
+*Display currently active TCP connections on your OS using netstatcommand
+*Display currently open ports on your system using nmap command (install it using apt)
+==========================================================
+dd if=/dev/zero of=disk1.disk bs=1024 count 100000
+dd if=/dev/zero of=disk2.disk bs=1024 count 100000
+dd if=/dev/zero of=disk3.disk bs=1024 count 50000
+dd if=/dev/zero of=disk4.disk bs=1024 count 50000
+losetup -f
+sudo losetup /dev/loop18 disk1.disk
+sudo losetup /dev/loop19 disk2.disk
+sudo losetup /dev/loop20 disk3.disk
+sudo losetup /dev/loop21 disk4.disk
+sudo pvcreate /dev/loop18
+sudo pvcreate /dev/loop19
+sudo pvcreate /dev/loop20
+sudo pvcreate /dev/loop21
+sudo vgcreate VG1 /dev/loop18 /dev/loop19 /dev/loop20
+sudo lvcreate -L 236M VG1
+sudo mkfs.ext4 /dev/Vg1/lvol0
+sudo mount /dev/Vg1/lvol0 /mnt/dev 
+sudo vgextend VG1 /dev/loop21
+sudo lvextend /dev/VG1/lvol0 +44
+
+=======================
+ip addr
+netstat-t
+nmap 192.168.1.1
