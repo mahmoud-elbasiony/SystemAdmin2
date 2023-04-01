@@ -1,0 +1,9 @@
+lsusb
+cat /proc/cpuinfo |grep processor
+sudo apt install sysstat
+iostat 2 5
+sudo apt install nicstat
+nicstat
+lspci
+ls -lh *.zip
+sudo cat /var/log/syslog | grep -E "0x[a-f0-9]{1,}"
