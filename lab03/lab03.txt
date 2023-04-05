@@ -1,0 +1,67 @@
+* Install ftpd service on your laptop
+* enable port 21 and 20 (tcp) using iptables command using INPUT chain
+* connect to ftp server (e.g: localhost) and browse the current directory
+* enable ufw service
+* block port 21 and 21 (tcp) using ufw
+* try to connect to ftp service.
+* capture the ufw log to detect the blocked operation
+* install nfs service on your system
+* enable nfs service on the firewall
+* create and share /tmp/shares folder using exportfs command  and /etc/exports file
+* mount the remote share on /mnt folder (you can using localhost as well)
+* copy some files to the remote shares
+* save iptables rules to /tmp/iptables-backup file
+  
+==============================================
+
+sudo apt install ftpd
+
+
+sudo iptables -t filter -A INPUT -p tcp --dport 20 -j ACCEPT
+sudo iptables -t filter -A INPUT -p tcp --dport 21 -j ACCEPT
+
+
+sudo ufw deny 20,21/tcp
+
+
+sudo ftp localhost
+
+
+dmesg
+sudo cat /var/log/kern.log
+
+sudo apt install nfs-kenel-server
+sudo ufw allow nfs
+
+mkdir /tmp/nfs-shares
+sudo mount localhost:/tmp/nfs-shares /mnt
+nano /mnt/shares.txt
+ftp localhost
+ls /tmp/nfs-shares
+
+
+sudo iptables-save > /tmp/iptables-backup
+cat /tmp/iptables-backup
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
