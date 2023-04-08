@@ -1,0 +1,31 @@
+Using apt install apache2 server
+	
+Replace the default index.html content with your own content
+	
+install php module for apache2
+	
+create new Named VirtulHost to serve new php project with special access log 
+	
+create simple index.php file for the php site
+	
+configure /etc/hosts for php site.
+	
+disable directory listing for the new virtualhost
+
+=================================================================
+sudo apt install apache2
+
+sudo nano /var/www/html/index.html
+
+sudo apt install libapache2-mod-php8.1
+
+ 
+sudo nano /etc/apache2/sites-available/iti43.conf
+
+sudo mkdir /var/www/html/iti43
+sudo nano /var/www/html/iti43/index.php
+
+sudo nano /etc/hosts
+
+sudo nano /etc/apache2/sites-available/iti43.conf
+
