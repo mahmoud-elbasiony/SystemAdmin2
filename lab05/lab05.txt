@@ -1,0 +1,16 @@
+* Using apt , install nginx
+* Enable port 80 on the firewall 
+* Create index.html file on root directory  of the server section and test it	
+* Install php-fpm package 
+* configure main site to enable php-fpm
+* create index.php file and test it.
+
+============================================================
+
+sudo apt update
+sudo apt install nginx
+sudo systemctl stop apache2
+sudo ufw allow 80/tcp
+sudo echo "<h1> hello nginx </h1>" > /var/www/html/index.html
+sudo apt install php-fpm
+sudo nano /etc/nginx/default
